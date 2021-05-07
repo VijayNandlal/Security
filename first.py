@@ -10,15 +10,16 @@ while(True):
     # Capture frame-by-frame
     ret, frame = cap.read()
 
-    # Display the resulting frame
-    cv2.imshow('frame',frame)
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    if not ret:
+        exit(1)
 
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     face = face_cascade.detectMultiScale(gray, scaleFactor=1.5, minNeighbors=5)
 
     for (x, y, w, z) in face:
         print(x, y, w, z)
 
+    cv2.imshow('frame', frame)
 
     if cv2.waitKey(20) & 0xFF == ord(' '):
         break
