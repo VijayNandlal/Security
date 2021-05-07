@@ -17,9 +17,9 @@ while(True):
     face = face_cascade.detectMultiScale(gray, scaleFactor=1.5, minNeighbors=5)
 
     for (x, y, w, h) in face:
-        img = cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
+        frame = cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
 
-    cv2.imshow('Detected', img)
+    cv2.imshow('Detected', frame)
 
     if cv2.waitKey(20) & 0xFF == ord(' '):
         break
