@@ -16,7 +16,7 @@ while(True):
 
     face = face_cascade.detectMultiScale(gray, scaleFactor=1.5, minNeighbors=5)
 
-    for (x, y, w, z) in faces:
+    for (x, y, w, z) in face:
         print(x, y, w, z)
 
 
