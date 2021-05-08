@@ -1,17 +1,11 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
 import numpy as np
 import cv2
 import face_recognition
 import dlib
 
 def get_encodings() -> list:
-    imgTrain = face_recognition.load_image_file("C:\\Users\\vijay\\PycharmProjects\\pythonProject\\train\\Frost.jpeg")
-    imgTrain2 = face_recognition.load_image_file("C:\\Users\\vijay\\PycharmProjects\\pythonProject\\train\\Frost2.jpg")
+    imgTrain = face_recognition.load_image_file('/Users/vijaynandlal/Desktop/t/Frost.jpeg')
+    imgTrain2 = face_recognition.load_image_file('/Users/vijaynandlal/Desktop/t/Frost2.jpeg')
     imgTrain = cv2.cvtColor(imgTrain, cv2.COLOR_BGR2RGB)
     imgTrain2 = cv2.cvtColor(imgTrain2, cv2.COLOR_BGR2RGB)
 
@@ -36,16 +30,17 @@ def main() -> int:
 
         usable_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         faceLocations = face_recognition.face_locations(img=usable_frame, model="cnn")
+        faceComps = face_recognition.face_encodings(usable_frame, faceLocations)
 
-        for a in faceLocations:
-            if any(face_recognition.compare_faces(database, a)):
-                frame = cv2.rectangle(frame, (a[3], a[0]), (a[1], a[2]), (0, 255, 0), 2)
+        for a in range(len(faceLocations)):
+            if any(face_recognition.compare_faces(database, faceComps[a])):
+                frame = cv2.rectangle(frame, (faceLocations[a][3], faceLocations[a][0]), (faceLocations[a][1], faceLocations[a][2]), (0, 255, 0), 2)
             else:
-                frame = cv2.rectangle(frame, (a[3], a[0]), (a[1], a[2]), (255, 0, 0), 2)
+                frame = cv2.rectangle(frame, (faceLocations[a][3], faceLocations[a][0]), (faceLocations[a][1], faceLocations[a][2]), (255,0 , 0), 2)
 
         cv2.imshow('Detected', frame)
 
-        if cv2.waitKey(0.1) & 0xFF == ord(' '):
+        if cv2.waitKey(1) & 0xFF == ord(' '):
             break
 
     # When everything done, release the capture
@@ -55,9 +50,6 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    while True:
-        cap = cv2.VideoCapture(0)
-        ret, frame = cap.read()
-        cv2.imshow("Test", frame)
-    #print("Started")
-    #print("Exited with code " + str(main()))
+
+    print("Started")
+    print("Exited with code " + str(main()))
