@@ -3,7 +3,7 @@ import cv2
 
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 eye_glasses = cv2.CascadeClassifier("haarcascade_eye_tree_eyeglasses.xml")
-frontFaceAlt = cv2.CascadeClassifier("haarcascade_frontalface_alt2")
+frontFaceAlt = cv2.CascadeClassifier("haarcascade_frontalface_alt2.xml")
 eyeball = cv2.CascadeClassifier("haarcascade_eye.xml")
 fullBody = cv2.CascadeClassifier("haarcascade_fullbody.xml")
 lowerBody = cv2.CascadeClassifier("haarcascade_lowerbody.xml")
