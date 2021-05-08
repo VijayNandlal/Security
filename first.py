@@ -22,7 +22,7 @@ while(True):
         frame = cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
 
     for (x, y, w, h) in eye_glasses_people:
-        frame = cv2.rectangle(frame, (x, y), (x + w), (y + h), (255, 4, 2), 3)
+        frame = cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 4, 2), 3)
 
     cv2.imshow('Detected', frame)
 
