@@ -23,7 +23,7 @@ while(True):
 
     cv2.imshow('Detected', frame)
 
-    if cv2.waitKey(20) & 0xFF == ord(' '):
+    if cv2.waitKey(0.1) & 0xFF == ord(' '):
         break
 
 # When everything done, release the capture
