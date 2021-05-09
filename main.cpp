@@ -3,6 +3,8 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc.hpp>
+#include <opencv2/objdetect.hpp>
+#include <opencv2/core/types.hpp>
 #include <iostream>
 
 using namespace cv;
@@ -12,6 +14,7 @@ int main() {
 
 	VideoCapture cap = VideoCapture(0);
 	Mat frame;
+	CascadeClassifier face_detect = CascadeClassifier("C:\\OpenCv\\opencv\\build\\etc\\haarcascades\\haarcascade_frontalface_default.xml");
 
 	while (true){
 
@@ -20,14 +23,28 @@ int main() {
 			return -1;
 		}
 
-		cout << "Start grabbing" << endl << "Press any key to terminate" << endl;
-
 		cap.read(frame);
 
 		if (frame.empty()) {
 			cerr << "ERROR! blank frame grabbed\n";
 			break;
 		}
+
+		Mat grayImage;
+		cvtColor(frame, grayImage, COLOR_BGR2GRAY); 
+
+		if (face_detect.empty()) {
+			fprintf(stderr, "Faces profile could not be loaded");
+			exit(1);
+		}
+
+		vector<Rect> faces;
+		face_detect.detectMultiScale(grayImage, faces, 1.2, 10);
+
+		for (int i = 0; i < faces.size(); i++) {
+			rectangle(frame, faces[i], Scalar(255, 255, 0), 4);
+		}
+
 
 		imshow("Live", frame);
 
@@ -36,4 +53,3 @@ int main() {
 	}
 
 	return 0;
-}
