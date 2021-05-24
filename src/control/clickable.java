@@ -17,9 +17,5 @@ public class clickable {
 
         int result = begin(view);
 
-        if(result == 1){
-            exit();
-        }
-
     }
 }
