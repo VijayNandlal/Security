@@ -1,5 +1,5 @@
 # Important
-1. Download [OpenCV](https://opencv.org/releases/) and when add the library java jar file and dynamically link the x64 dll library only by updating the java.library.path 
+1. Download [OpenCV](https://opencv.org/releases/) and add the library java jar file then dynamically link the x64 dll library by updating the java.library.path 
 2. ```-Djava.library.path="System path to the dll" ```  in the jvm options
 
 ## Useage
