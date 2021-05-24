@@ -21,7 +21,7 @@ public class Main extends Application {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                Platform.exit();
+                System.exit(0);
             }
         });
         primaryStage.setScene(new Scene(root));
