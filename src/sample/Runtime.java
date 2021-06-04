@@ -16,7 +16,7 @@ import static org.opencv.imgproc.Imgproc.rectangle;
 
 public class Runtime {
 
-    public static int begin(ImageView place){
+    public static int begin(ImageView place, String location){
 
         VideoCapture cap = new VideoCapture(0);
 
@@ -69,7 +69,7 @@ public class Runtime {
             }
 
             if (flag == 1 && time.compareTo(LocalTime.now().minusMinutes(2)) < 0) {
-                Imgcodecs.imwrite("src/results/person.jpg", frame);
+                Imgcodecs.imwrite(location, frame);
                 time = LocalTime.now();
             }
 
